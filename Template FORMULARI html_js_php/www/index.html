@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+
+    <title>Template formulari amb recaptcha V2</title>
+    <!-- SCRIPT RECAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- SCRIPT VALIDACIO -->
+    <script>
+      function enviar(){
+
+          var response = grecaptcha.getResponse();
+          nombre = document.getElementById("nombre").value;
+          email = document.getElementById("email").value;
+          mensaje = document.getElementById("mensaje").value;
+
+          if(response.length != 0 && nombre.lenght != 0 && email.lenght != 0 && mensaje.lenght != 0) 
+          document.formulario1.submit();
+          else 
+          alert("Rellena los campos con un asterisco * y haz clic al captcha.");
+      }
+    </script>
+  </head>
+      
+      
+  <body>   
+    <div id="formulari" class="container bg-primary p-md-5">
+    
+      <form  id="status" action="enviar.php" method=post name="formulario1" target="_blank" >
+        <p>Contacta con nosotros y juntos analizaremos con detalle tus necesidades:</p>
+          <div class="form-group">
+              <label for="nombre">*Nombre</label>
+              <input type="text" class="form-control" name='nombre' id="nombre" placeholder="Nombre..." required>
+          </div>         
+          <div class="form-group">
+              <label for="email">*Email</label>
+              <input type="email" class="form-control" name='email' id="email" placeholder="Email..." required>
+          </div>
+          <div class="form-group">
+              <label for="exampleTextarea" >*Mensaje</label>
+              <textarea class="form-control" name='mensaje' id="mensaje" placeholder="Mensaje..." required></textarea>
+          </div>
+          <div class="form-group">
+          <div class="g-recaptcha" data-sitekey=" INSERT PUBLIC KEY RECAPTCHA  " ></div>
+          <br>
+          </div>
+          <input type="button"  onclick="javascript:enviar()" value="Aceptar">
+      </form>                
+      <br>
+
+    </div>
+
+  </body>
+</html>
+
+    
